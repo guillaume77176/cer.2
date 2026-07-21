@@ -28,13 +28,13 @@ t2 = "MMjEfjh0UPj50VHnzAAMkkrul9VG6YEG4WAs48Bi"
 t3 = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiJROE1STTBEUVlJT0kwNU9JQkFPNSIsImFsbG93ZWQtb3JpZ2lucyI6WyIqIl0sImF1ZCI6WyJtaW5pby1kYXRhbm9kZSIsIm9ueXhpYSIsImFjY291bnQiXSwiYXV0aF90aW1lIjoxNzg0NDEzMjgzLCJhenAiOiJvbnl4aWEiLCJjbmYiOnsiamt0IjoiYjFoengtSjRKOUxJbjRuLTJ0WFlWUGxFeUZtWEFZTkdndEZIRHZMaDNLNCJ9LCJlbWFpbCI6Imd1aWxsYXVtZS5yb3VzdGFuQGVuc2FlLmZyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImV4cCI6MTc4NTAxODA4OCwiZmFtaWx5X25hbWUiOiJSb3VzdGFuIiwiZ2l2ZW5fbmFtZSI6Ikd1aWxsYXVtZSIsImdyb3VwcyI6WyJVU0VSX09OWVhJQSJdLCJpYXQiOjE3ODQ0MTMyODgsImlzcyI6Imh0dHBzOi8vYXV0aC5sYWIuc3NwY2xvdWQuZnIvYXV0aC9yZWFsbXMvc3NwY2xvdWQiLCJqdGkiOiJvbnJ0cnQ6ZTM2MTBkNDktMDhiOC0yNGZjLTNlZTUtZmQxMzE0YmMzYTg1IiwibG9jYWxlIjoiZnIiLCJuYW1lIjoiR3VpbGxhdW1lIFJvdXN0YW4iLCJwb2xpY3kiOiJzdHNvbmx5IiwicHJlZmVycmVkX3VzZXJuYW1lIjoiZ3VpbGxhdW1lMTc2IiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iLCJkZWZhdWx0LXJvbGVzLXNzcGNsb3VkIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsImRlZmF1bHQtcm9sZXMtc3NwY2xvdWQiXSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBncm91cHMgZW1haWwiLCJzaWQiOiJpWUVRcEFSeDVISDVnN0tIcktuWm5VSzYiLCJzdWIiOiI5Mjc4NzJjYi03NjgyLTRkNDAtYjliNy04M2IyYjk3YWRmMjgiLCJ0eXAiOiJEUG9QIn0.XDvECBTiNqnLFN1TjUjrxupmqc1CsXdJw1Ay9OkCOImmBgeOxn1PyGRnEzYujcZjHpzzkiJoG_5uyddRJ0nu-g"
 
 st.set_page_config(
-    page_title="TyGui-Finance - L'app de gestion financière du quotidien de Guillaume et Typhaine",
+    page_title="Alexmex MoneyMaker - L'app de gestion financière du quotidien de Alex",
     page_icon=":chart_with_upwards_trend:",
     layout="wide",
 )
 
 """
-# :material/query_stats: TyGui-Finance - L'app de gestion financière du quotidien de Guillaume et Typhaine | 
+# :material/query_stats: Alexmex MoneyMaker - L'app de gestion financière du quotidien de Alex | 
 """
 
 ""  
@@ -47,9 +47,9 @@ cols = st.columns([1, 3])
 #####################################################################
 
 #Import des données
-saved_table = pd.read_csv("https://minio.lab.sspcloud.fr/guillaume176/tygui/tabledep.csv")
-entry = pd.read_csv("https://minio.lab.sspcloud.fr/guillaume176/tygui/entry.csv")
-message = pd.read_csv("https://minio.lab.sspcloud.fr/guillaume176/tygui/message.csv")
+saved_table = pd.read_csv("https://minio.lab.sspcloud.fr/guillaume176/alex/tabledep.csv")
+entry = pd.read_csv("https://minio.lab.sspcloud.fr/guillaume176/alex/entry.csv")
+message = pd.read_csv("https://minio.lab.sspcloud.fr/guillaume176/alex/message.csv")
 
 #Gestion de la date
 date = datetime.now(ZoneInfo("Europe/Paris"))
@@ -86,7 +86,7 @@ c1, c2, c3, c4, c5 = st.columns(5)
 
 c1.metric("🛒 Transactions enregistrées (mois)", len(saved_table)-1)
 c2.metric("🔁 Total en cours (mois)", f"{saved_table['Montant'].sum():.2f} €")
-c3.metric("⚖️ Solde compte Typhaine + Guillaume", f"{solde:.2f} €", delta=solde)
+c3.metric("⚖️ Solde compte Alex", f"{solde:.2f} €", delta=solde)
 c4.metric("🤔 Economies réalisées / mois dernier ?", f"{economies}", delta = economies)
 c5.metric("💰 Revenu totaux (mois)", f"{rev:.2f} €")
 
@@ -155,7 +155,7 @@ if ajouter_depense:
     #Stockage sur S3
     MY_BUCKET = "guillaume176"
 
-    FILE_PATH_OUT_S3 = f"{MY_BUCKET}/tygui/tabledep.csv"
+    FILE_PATH_OUT_S3 = f"{MY_BUCKET}/alex/tabledep.csv"
 
     with fs.open(FILE_PATH_OUT_S3,"wb") as file_out:
         saved_table.to_csv(file_out, index=False)
@@ -185,9 +185,8 @@ with st.form("form_argent"):
         categorie = st.selectbox(
             "🔠 Catégorie",
             [
-                "Salaire Guillaume",
-                "Salaire Typhaine",
-                "Pensions / Aides",
+                "Salaire Alex",
+                "Jeux",
                 "Extra 😉"
             ]
         )
@@ -224,7 +223,7 @@ if ajouter_argent:
     #Stockage sur S3
     MY_BUCKET = "guillaume176"
 
-    FILE_PATH_OUT_S3 = f"{MY_BUCKET}/tygui/entry.csv"
+    FILE_PATH_OUT_S3 = f"{MY_BUCKET}/alex/entry.csv"
 
     with fs.open(FILE_PATH_OUT_S3,"wb") as file_out:
         entry.to_csv(file_out, index=False)
@@ -311,7 +310,7 @@ if ajouter_message:
     #Stockage sur S3
     MY_BUCKET = "guillaume176"
 
-    FILE_PATH_OUT_S3 = f"{MY_BUCKET}/tygui/message.csv"
+    FILE_PATH_OUT_S3 = f"{MY_BUCKET}/alex/message.csv"
 
     with fs.open(FILE_PATH_OUT_S3,"wb") as file_out:
         message.to_csv(file_out, index=False)
