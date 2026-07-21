@@ -40,6 +40,7 @@ st.set_page_config(
 ""  
 
 st.text("Ajoute chaque dépense de manière simple, consulte tes dépenses en cours du mois, planifie tes dépenses à l'avance et reste dans tes comptes, et bien plus !")
+st.write("♠️♥️♦️♣️")
 cols = st.columns([1, 3])
 
 #####################################################################
